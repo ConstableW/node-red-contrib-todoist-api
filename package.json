@@ -1,7 +1,7 @@
 {
-  "name": "@foxleigh81/node-red-contrib-todoist-api",
-  "version": "1.1.1",
-  "description": "Todoist API interaction nodes for Node-RED",
+  "name": "@constablew/node-red-contrib-todoist-api",
+  "version": "2.0.0",
+  "description": "Todoist API v1 nodes for Node-RED (fork of @foxleigh81/node-red-contrib-todoist-api)",
   "node-red": {
     "nodes": {
       "add-todoist-api-token": "./nodes/config.js",
@@ -16,32 +16,44 @@
       "todoist-query-api": "./nodes/query.js"
     }
   },
-  "license": "MIT",
-  "homepage": "https://github.com/foxleigh81/node-red-contrib-todoist-api#readme",
-  "authors": {
-    "name": "Alex Foxleigh",
-    "email": "alex@alexfoxleigh.com",
-    "url": "https://alexfoxleigh.com/"
-  },
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/ConstableW/node-red-contrib-todoist-api#readme",
+  "authors": [
+    {
+      "name": "Alex Foxleigh",
+      "email": "alex@alexfoxleigh.com",
+      "url": "https://alexfoxleigh.com/"
+    },
+    {
+      "name": "ConstableW",
+      "url": "https://github.com/ConstableW"
+    }
+  ],
   "keywords": [
     "Todoist",
     "node-red"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/foxleigh81/node-red-contrib-todoist-api.git"
+    "url": "git+https://github.com/ConstableW/node-red-contrib-todoist-api.git"
   },
   "dependencies": {
-    "axios": "^0.25.0",
-    "husky": "^7.0.4",
-    "prettier": "^2.5.1"
+    "axios": "^0.25.0"
   },
   "scripts": {
     "lint": "eslint .",
     "prettier": "prettier --write .",
-    "postinstall": "husky install"
+    "prepare": "husky install || exit 0"
   },
   "devDependencies": {
-    "eslint": "^8.10.0"
+    "eslint": "^8.10.0",
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1"
+  },
+  "bugs": {
+    "url": "https://github.com/ConstableW/node-red-contrib-todoist-api/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

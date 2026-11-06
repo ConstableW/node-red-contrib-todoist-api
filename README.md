@@ -1,17 +1,18 @@
-# @foxleigh81/node-red-contrib-todoist-api
+# @constablew/node-red-contrib-todoist-api
 
-![npm](https://img.shields.io/npm/dm/@foxleigh81/node-red-contrib-todoist-api)
+![npm](https://img.shields.io/npm/dm/@constablew/node-red-contrib-todoist-api)
 
-![Todoist Node Red](https://repository-images.githubusercontent.com/458516480/01940d4d-b7eb-4683-9afb-ff57ee1a86c1)
+> ⚠️ This is a maintained fork of [`@foxleigh81/node-red-contrib-todoist-api`](https://github.com/foxleigh81/node-red-contrib-todoist-api) by Alex Foxleigh, which is no longer maintained.
+> Version 2.0.0 targets the **Todoist API v1** (`https://api.todoist.com/api/v1/`). List endpoints (all tasks, all projects) are fetched page by page and returned as a flat array in `msg.payload.data`.
 
-This is a node-red palette that allows you to interact with your [Todoist](https://todoist.com) account via the [Todoist REST API](https://developer.todoist.com/api/v1/)
+This is a node-red palette that allows you to interact with your [Todoist](https://todoist.com) account via the [Todoist API](https://developer.todoist.com/api/v1/).
 
 ## Install
 
 You can install via the node-red palette manager or via npm:
 
 ```bash
-npm i --unsafe-perm @foxleigh81/node-red-contrib-todoist-api
+npm i --unsafe-perm @constablew/node-red-contrib-todoist-api
 ```
 
 ## Usage
@@ -73,15 +74,15 @@ Each node interacts with the Todoist API and returns data in the form of a node-
     "y": 680,
     "wires": []
   },
-  { "id": "59a4505979e26f0f", "type": "add-token", "name": "Todoist" }
+  { "id": "59a4505979e26f0f", "type": "add-todoist-api-token", "name": "Todoist" }
 ]
 ```
 
-The payload data in the inject node is same data as the Todoist REST API create task item. [https://developer.todoist.com/rest/v8/#create-a-new-task](https://developer.todoist.com/rest/v8/#create-a-new-task).
+The payload data in the inject node is the same data as the Todoist API create task item, see the [Todoist API v1 documentation](https://developer.todoist.com/api/v1/).
 
 ## Nodes available
 
-I created several nodes for common tasks such as:
+This package provides several nodes for common tasks such as:
 
 - Create an individual task
 - Get an individual task
@@ -91,18 +92,24 @@ I created several nodes for common tasks such as:
 - Complete/uncomplete an individual task
 - Delete an individual task
 
-I also created a generic 'query' node that can be used to query any Todoist endpoint.
+There is also a generic 'query' node that can be used to query any Todoist endpoint.
 
 Here is a visual representation of the nodes available:
 
-![all available nodes](https://raw.githubusercontent.com/foxleigh81/node-red-contrib-todoist-api/master/all-nodes.png)
+![all available nodes](https://raw.githubusercontent.com/ConstableW/node-red-contrib-todoist-api/master/all-nodes.png)
 
 ## License
 
-MIT License
+GNU General Public License v3.0 – see [LICENSE](LICENSE).
 
-## Support me
+Originally created by [Alex Foxleigh](https://github.com/foxleigh81), maintained by [ConstableW](https://github.com/ConstableW).
 
-I made this with love and of course it is free for you to use and modify however you see fit, however if you would like to buy me a coffee to say thanks, I certainly won't complain :)
+## Support
+
+Buy Me a Coffee – Maintainer:
+
+[![Buy Me a Coffee – Maintainer](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/constablew)
+
+Support the original author:
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I3I21FRCN)
