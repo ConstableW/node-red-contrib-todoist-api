@@ -1,0 +1,214 @@
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-label-get-all", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "List all labels";
+    },
+    paletteLabel: "List all labels"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-label-get-all">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-label-get-all">
+  Lists all personal labels. All pages are loaded and returned as one array in `msg.payload.data`. The payload is not used.
+
+  e.g.
+
+  ```
+  {}
+  ```
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-label-get", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Get a label";
+    },
+    paletteLabel: "Get a label"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-label-get">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-label-get">
+  Gets a single personal label.
+
+  e.g.
+
+  ```
+  {
+    "id": "2156154810"
+  }
+  ```
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-label-create", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Create a label";
+    },
+    paletteLabel: "Create a label"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-label-create">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-label-create">
+  Creates a personal label. Optional: `color`, `order`, `is_favorite`.
+
+  e.g.
+
+  ```
+  {
+    "name": "home",
+    "color": "berry_red"
+  }
+  ```
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-label-update", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Update a label";
+    },
+    paletteLabel: "Update a label"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-label-update">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-label-update">
+  Updates a label. Optional: `name`, `color`, `order`, `is_favorite`.
+
+  e.g.
+
+  ```
+  {
+    "id": "2156154810",
+    "name": "house"
+  }
+  ```
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-label-delete", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Delete a label";
+    },
+    paletteLabel: "Delete a label"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-label-delete">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-label-delete">
+  Deletes a personal label.
+
+  e.g.
+
+  ```
+  {
+    "id": "2156154810"
+  }
+  ```
+</script>

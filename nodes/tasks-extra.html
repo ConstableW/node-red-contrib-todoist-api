@@ -1,0 +1,130 @@
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-task-filter", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Get tasks by filter";
+    },
+    paletteLabel: "Get tasks by filter"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-task-filter">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-task-filter">
+  Gets all active tasks matching a Todoist filter query (e.g. `today`, `overdue`, `p1 & #Work`). All pages are loaded and returned as one array in `msg.payload.data`.
+
+  e.g.
+
+  ```
+  {
+    "query": "today | overdue",
+    "lang": "en"
+  }
+  ```
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-task-quick-add", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Quick add task";
+    },
+    paletteLabel: "Quick add task"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-task-quick-add">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-task-quick-add">
+  Adds a task from natural language, like the Quick Add in the Todoist app (e.g. `Buy milk tomorrow #Shopping @home p1`).
+
+  e.g.
+
+  ```
+  {
+    "text": "Buy milk tomorrow #Shopping p1"
+  }
+  ```
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-task-move", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Move a task";
+    },
+    paletteLabel: "Move a task"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-task-move">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-task-move">
+  Moves a task to another project, section or parent task. Provide exactly one of `project_id`, `section_id`, `parent_id`.
+
+  e.g.
+
+  ```
+  {
+    "id": "123456789",
+    "project_id": "2184202398"
+  }
+  ```
+</script>

@@ -1,6 +1,6 @@
 {
   "name": "@constablew/node-red-contrib-todoist-api",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Todoist API v1 nodes for Node-RED (fork of @foxleigh81/node-red-contrib-todoist-api)",
   "node-red": {
     "nodes": {
@@ -13,7 +13,12 @@
       "todoist-task-reopen": "./nodes/reopen-task.js",
       "todoist-task-delete": "./nodes/delete-task.js",
       "todoist-project-get-all": "./nodes/get-all-projects.js",
-      "todoist-query-api": "./nodes/query.js"
+      "todoist-query-api": "./nodes/query.js",
+      "todoist-tasks-extra": "./nodes/tasks-extra.js",
+      "todoist-projects": "./nodes/projects.js",
+      "todoist-sections": "./nodes/sections.js",
+      "todoist-labels": "./nodes/labels.js",
+      "todoist-comments": "./nodes/comments.js"
     }
   },
   "license": "GPL-3.0",

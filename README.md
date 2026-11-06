@@ -5,7 +5,7 @@
 ![npm](https://img.shields.io/npm/dm/@constablew/node-red-contrib-todoist-api)
 
 > ⚠️ This is a maintained fork of [`@foxleigh81/node-red-contrib-todoist-api`](https://github.com/foxleigh81/node-red-contrib-todoist-api) by Alex Foxleigh, which is no longer maintained.
-> Version 2.0.0 targets the **Todoist API v1** (`https://api.todoist.com/api/v1/`). List endpoints (all tasks, all projects) are fetched page by page and returned as a flat array in `msg.payload.data`.
+> Version 2.x targets the **Todoist API v1** (`https://api.todoist.com/api/v1/`). List endpoints (all tasks, all projects) are fetched page by page and returned as a flat array in `msg.payload.data`.
 
 This is a node-red palette that allows you to interact with your [Todoist](https://todoist.com) account via the [Todoist API](https://developer.todoist.com/api/v1/).
 
@@ -93,6 +93,13 @@ This package provides several nodes for common tasks such as:
 - Update an individual task
 - Complete/uncomplete an individual task
 - Delete an individual task
+- Get tasks by filter (e.g. `today | overdue`), quick add a task from natural language, move a task
+- Projects: get, create, update, delete, archive, unarchive
+- Sections: list, get, create, update, delete
+- Labels: list, get, create, update, delete
+- Comments: list, create, update, delete
+
+List nodes load all pages from the API and return them as one array in `msg.payload.data`. Required payload fields (e.g. `id`) are checked before a request is sent.
 
 There is also a generic 'query' node that can be used to query any Todoist endpoint.
 

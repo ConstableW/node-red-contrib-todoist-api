@@ -1,0 +1,216 @@
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-section-get-all", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "List all sections";
+    },
+    paletteLabel: "List all sections"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-section-get-all">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-section-get-all">
+  Lists sections of the account, optionally only of one project. All pages are loaded and returned as one array in `msg.payload.data`.
+
+  e.g.
+
+  ```
+  {
+    "project_id": "2184202398"
+  }
+  ```
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-section-get", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Get a section";
+    },
+    paletteLabel: "Get a section"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-section-get">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-section-get">
+  Gets a single section.
+
+  e.g.
+
+  ```
+  {
+    "id": "7025"
+  }
+  ```
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-section-create", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Create a section";
+    },
+    paletteLabel: "Create a section"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-section-create">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-section-create">
+  Creates a section in a project. Optional: `order`.
+
+  e.g.
+
+  ```
+  {
+    "name": "Groceries",
+    "project_id": "2184202398"
+  }
+  ```
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-section-update", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Update a section";
+    },
+    paletteLabel: "Update a section"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-section-update">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-section-update">
+  Renames a section.
+
+  e.g.
+
+  ```
+  {
+    "id": "7025",
+    "name": "Food"
+  }
+  ```
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-section-delete", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Delete a section";
+    },
+    paletteLabel: "Delete a section"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-section-delete">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-section-delete">
+  Deletes a section and its tasks.
+
+  e.g.
+
+  ```
+  {
+    "id": "7025"
+  }
+  ```
+</script>

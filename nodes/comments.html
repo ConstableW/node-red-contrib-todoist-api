@@ -1,0 +1,173 @@
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-comment-get-all", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "List comments";
+    },
+    paletteLabel: "List comments"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-comment-get-all">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-comment-get-all">
+  Lists comments of a task or a project. Provide `task_id` or `project_id`. All pages are loaded and returned as one array in `msg.payload.data`.
+
+  e.g.
+
+  ```
+  {
+    "task_id": "123456789"
+  }
+  ```
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-comment-create", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Create a comment";
+    },
+    paletteLabel: "Create a comment"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-comment-create">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-comment-create">
+  Adds a comment to a task or project. Provide `content` and `task_id` or `project_id`.
+
+  e.g.
+
+  ```
+  {
+    "content": "Remember the receipt",
+    "task_id": "123456789"
+  }
+  ```
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-comment-update", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Update a comment";
+    },
+    paletteLabel: "Update a comment"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-comment-update">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-comment-update">
+  Changes the text of a comment.
+
+  e.g.
+
+  ```
+  {
+    "id": "987654",
+    "content": "Receipt is in the drawer"
+  }
+  ```
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("todoist-comment-delete", {
+    category: "Todoist",
+    icon: "icons/todoist.png",
+    color: "#db4c3f",
+    defaults: {
+      name: { value: "" },
+      token: {
+        type: "add-todoist-api-token"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "Delete a comment";
+    },
+    paletteLabel: "Delete a comment"
+  });
+</script>
+
+<script type="text/html" data-template-name="todoist-comment-delete">
+  <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-key"></i> Select Token</label>
+    <input type="text" id="node-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="todoist-comment-delete">
+  Deletes a comment.
+
+  e.g.
+
+  ```
+  {
+    "id": "987654"
+  }
+  ```
+</script>
