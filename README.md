@@ -1,5 +1,7 @@
 # @constablew/node-red-contrib-todoist-api
 
+![Todoist API v1 for Node-RED](https://raw.githubusercontent.com/ConstableW/node-red-contrib-todoist-api/master/assets/banner.svg)
+
 ![npm](https://img.shields.io/npm/dm/@constablew/node-red-contrib-todoist-api)
 
 > ⚠️ This is a maintained fork of [`@foxleigh81/node-red-contrib-todoist-api`](https://github.com/foxleigh81/node-red-contrib-todoist-api) by Alex Foxleigh, which is no longer maintained.
