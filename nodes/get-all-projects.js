@@ -11,7 +11,8 @@ module.exports = function (RED) {
       const options = {
         token,
         endpoint: "projects",
-        method: "GET"
+        method: "GET",
+        paginate: true
       };
       return runQuery(node, options, msg);
     });

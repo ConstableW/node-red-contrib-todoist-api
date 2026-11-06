@@ -6,12 +6,15 @@ module.exports = function (RED) {
     const token = RED.nodes.getNode(config.token).credentials.token;
 
     node.on("input", function (msg) {
-      const project_id = msg.payload.project_id || null;
-      const endpoint = project_id ? `tasks?project_id=${project_id}` : "tasks";
+      const project_id = (msg.payload && msg.payload.project_id) || null;
+      const endpoint = project_id
+        ? `tasks?project_id=${encodeURIComponent(project_id)}`
+        : "tasks";
       const options = {
         token,
         endpoint,
-        method: "GET"
+        method: "GET",
+        paginate: true
       };
       return runQuery(node, options, msg);
     });
