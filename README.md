@@ -21,13 +21,13 @@ npm i --unsafe-perm @constablew/node-red-contrib-todoist-api
 
 ### Configuration
 
-To start using these nodes you will need to create a new configuration node, to do this, drag a node from the palette into the flow editor and double click it and add your Todoist API token to the 'select token' dropdown.
+To start using these nodes you need a token configuration node: drag any Todoist node from the palette into the flow editor, double-click it, click the pencil next to **Select Token**, and paste your Todoist API token. All Todoist nodes can share this one configuration.
 
-To get your todoist personal API token, go to https://todoist.com/app/settings/integrations and click the 'devlopers' tab.
+To get your personal Todoist API token, open https://app.todoist.com/app/settings/integrations/developer in Todoist (Settings → Integrations → Developer).
 
 ### Adding data
 
-Each node interacts with the Todoist API and returns data in the form of a node-red flow. In order for it to work, you will need to pass the data to the the node via a payload. See the example below for a basic node that creates a new task in your Todoist project.
+Each node reads its input from `msg.payload` (an object, e.g. `{ "id": "123" }` or `{ "content": "Buy milk" }`) and sends the Todoist response on its output as `msg.payload.data`. The fields every node understands are listed in [docs/nodes.md](docs/nodes.md). See the example below for a basic flow that creates a new task in your Todoist project.
 
 ### Example flow
 
@@ -84,24 +84,23 @@ The payload data in the inject node is the same data as the Todoist API create t
 
 ## Nodes available
 
-This package provides several nodes for common tasks such as:
+All nodes are in the palette category **Todoist**. The complete reference with all payload fields, examples and outputs is in **[docs/nodes.md](docs/nodes.md)**.
 
-- Create an individual task
-- Get an individual task
-- List all tasks (either in a project or on the entire account)
-- List all projects
-- Update an individual task
-- Complete/uncomplete an individual task
-- Delete an individual task
-- Get tasks by filter (e.g. `today | overdue`), quick add a task from natural language, move a task
-- Projects: get, create, update, delete, archive, unarchive
-- Sections: list, get, create, update, delete
-- Labels: list, get, create, update, delete
-- Comments: list, create, update, delete
+| Area | Nodes |
+| --- | --- |
+| **Tasks** | [Get all tasks](docs/nodes.md#get-all-tasks), [Get tasks by filter](docs/nodes.md#get-tasks-by-filter), [Get a task](docs/nodes.md#get-a-task), [Create a task](docs/nodes.md#create-a-task), [Quick add task](docs/nodes.md#quick-add-task), [Update a task](docs/nodes.md#update-a-task), [Move a task](docs/nodes.md#move-a-task), [Complete a task](docs/nodes.md#complete-a-task), [Reopen a task](docs/nodes.md#reopen-a-task), [Delete a task](docs/nodes.md#delete-a-task) |
+| **Projects** | [Get all projects](docs/nodes.md#get-all-projects), [Get](docs/nodes.md#get-a-project), [Create](docs/nodes.md#create-a-project), [Update](docs/nodes.md#update-a-project), [Archive / Unarchive](docs/nodes.md#archive--unarchive-a-project), [Delete](docs/nodes.md#delete-a-project) |
+| **Sections** | [List all](docs/nodes.md#list-all-sections), [Get](docs/nodes.md#get-a-section), [Create](docs/nodes.md#create-a-section), [Update](docs/nodes.md#update-a-section), [Delete](docs/nodes.md#delete-a-section) |
+| **Labels** | [List all](docs/nodes.md#list-all-labels), [Get](docs/nodes.md#get-a-label), [Create](docs/nodes.md#create-a-label), [Update](docs/nodes.md#update-a-label), [Delete](docs/nodes.md#delete-a-label) |
+| **Comments** | [List](docs/nodes.md#list-comments), [Create](docs/nodes.md#create-a-comment), [Update](docs/nodes.md#update-a-comment), [Delete](docs/nodes.md#delete-a-comment) |
+| **Generic** | [Custom query](docs/nodes.md#generic-query) for any other endpoint of the Todoist API v1 |
 
-List nodes load all pages from the API and return them as one array in `msg.payload.data`. Required payload fields (e.g. `id`) are checked before a request is sent.
+Good to know (details in [docs/nodes.md](docs/nodes.md#common-behaviour)):
 
-There is also a generic 'query' node that can be used to query any Todoist endpoint.
+- Result data is in `msg.payload.data`, the HTTP status in `msg.payload.status`.
+- List nodes load **all pages** from the API and return one flat array.
+- On API errors `msg.payload` is the error object (`msg.payload.response.status`, `msg.payload.response.data`).
+- Nodes added in 2.1.0 check the token and required payload fields before sending a request.
 
 Here is a visual representation of the nodes available:
 
