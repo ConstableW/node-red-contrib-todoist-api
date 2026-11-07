@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Node reference
+    url: https://github.com/ConstableW/node-red-contrib-todoist-api/blob/master/docs/nodes.md
+    about: All nodes with payload fields and examples
