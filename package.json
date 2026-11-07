@@ -1,6 +1,6 @@
 {
   "name": "@constablew/node-red-contrib-todoist-api",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Todoist API v1 nodes for Node-RED (fork of @foxleigh81/node-red-contrib-todoist-api)",
   "node-red": {
     "nodes": {
