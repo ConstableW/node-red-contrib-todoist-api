@@ -1,0 +1,2783 @@
+[
+  {
+    "id": "tdtest_tab",
+    "type": "tab",
+    "label": "Todoist Test",
+    "disabled": false,
+    "info": "Manuelle Injects fuer jeden Todoist-Node (IDs in den Inject-Payloads anpassen) und ein Auto-Test, der in einem Wegwerf-Projekt ClaudeTest alle Nodes durchlaeuft und wieder aufraeumt. Ergebnisse stehen in der Debug-Sidebar."
+  },
+  {
+    "id": "tdtest_token",
+    "type": "add-todoist-api-token",
+    "name": "Todoist Token"
+  },
+  {
+    "id": "cm1",
+    "type": "comment",
+    "z": "tdtest_tab",
+    "name": "=== Manuell: Inject -> Todoist-Node -> Debug 'Todoist Antwort'. IDs in den Payloads ersetzen ===",
+    "info": "",
+    "x": 200,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "cm2",
+    "type": "comment",
+    "z": "tdtest_tab",
+    "name": "--- TASKS ---",
+    "info": "",
+    "x": 200,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "inj1",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Get all tasks",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Get all tasks",
+    "payload": "{}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 120,
+    "wires": [
+      [
+        "tn1"
+      ]
+    ]
+  },
+  {
+    "id": "tn1",
+    "type": "todoist-task-get-all",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 120,
+    "wires": [
+      [
+        "lo1"
+      ]
+    ]
+  },
+  {
+    "id": "lo1",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "inj2",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Get all tasks (project)",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Get all tasks (project)",
+    "payload": "{\"project_id\":\"PROJECT_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 156,
+    "wires": [
+      [
+        "tn2"
+      ]
+    ]
+  },
+  {
+    "id": "tn2",
+    "type": "todoist-task-get-all",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 156,
+    "wires": [
+      [
+        "lo2"
+      ]
+    ]
+  },
+  {
+    "id": "lo2",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 156,
+    "wires": []
+  },
+  {
+    "id": "inj3",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Get tasks by filter",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Get tasks by filter",
+    "payload": "{\"query\":\"today | overdue\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 192,
+    "wires": [
+      [
+        "tn3"
+      ]
+    ]
+  },
+  {
+    "id": "tn3",
+    "type": "todoist-task-filter",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 192,
+    "wires": [
+      [
+        "lo3"
+      ]
+    ]
+  },
+  {
+    "id": "lo3",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 192,
+    "wires": []
+  },
+  {
+    "id": "inj4",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Create task",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Create task",
+    "payload": "{\"content\":\"Test task\",\"project_id\":\"PROJECT_ID\",\"priority\":2}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 228,
+    "wires": [
+      [
+        "tn4"
+      ]
+    ]
+  },
+  {
+    "id": "tn4",
+    "type": "todoist-task-create",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 228,
+    "wires": [
+      [
+        "lo4"
+      ]
+    ]
+  },
+  {
+    "id": "lo4",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 228,
+    "wires": []
+  },
+  {
+    "id": "inj5",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Quick add task",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Quick add task",
+    "payload": "{\"text\":\"Buy milk tomorrow p1\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 264,
+    "wires": [
+      [
+        "tn5"
+      ]
+    ]
+  },
+  {
+    "id": "tn5",
+    "type": "todoist-task-quick-add",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 264,
+    "wires": [
+      [
+        "lo5"
+      ]
+    ]
+  },
+  {
+    "id": "lo5",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 264,
+    "wires": []
+  },
+  {
+    "id": "inj6",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Get task",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Get task",
+    "payload": "{\"id\":\"TASK_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 300,
+    "wires": [
+      [
+        "tn6"
+      ]
+    ]
+  },
+  {
+    "id": "tn6",
+    "type": "todoist-task-get",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 300,
+    "wires": [
+      [
+        "lo6"
+      ]
+    ]
+  },
+  {
+    "id": "lo6",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "inj7",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Update task",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Update task",
+    "payload": "{\"id\":\"TASK_ID\",\"content\":\"Updated\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 336,
+    "wires": [
+      [
+        "tn7"
+      ]
+    ]
+  },
+  {
+    "id": "tn7",
+    "type": "todoist-task-update",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 336,
+    "wires": [
+      [
+        "lo7"
+      ]
+    ]
+  },
+  {
+    "id": "lo7",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 336,
+    "wires": []
+  },
+  {
+    "id": "inj8",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Move task",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Move task",
+    "payload": "{\"id\":\"TASK_ID\",\"section_id\":\"SECTION_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 372,
+    "wires": [
+      [
+        "tn8"
+      ]
+    ]
+  },
+  {
+    "id": "tn8",
+    "type": "todoist-task-move",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 372,
+    "wires": [
+      [
+        "lo8"
+      ]
+    ]
+  },
+  {
+    "id": "lo8",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 372,
+    "wires": []
+  },
+  {
+    "id": "inj9",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Complete task",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Complete task",
+    "payload": "{\"id\":\"TASK_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 408,
+    "wires": [
+      [
+        "tn9"
+      ]
+    ]
+  },
+  {
+    "id": "tn9",
+    "type": "todoist-task-complete",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 408,
+    "wires": [
+      [
+        "lo9"
+      ]
+    ]
+  },
+  {
+    "id": "lo9",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 408,
+    "wires": []
+  },
+  {
+    "id": "inj10",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Reopen task",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Reopen task",
+    "payload": "{\"id\":\"TASK_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 444,
+    "wires": [
+      [
+        "tn10"
+      ]
+    ]
+  },
+  {
+    "id": "tn10",
+    "type": "todoist-task-reopen",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 444,
+    "wires": [
+      [
+        "lo10"
+      ]
+    ]
+  },
+  {
+    "id": "lo10",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 444,
+    "wires": []
+  },
+  {
+    "id": "inj11",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Delete task",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Delete task",
+    "payload": "{\"id\":\"TASK_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 480,
+    "wires": [
+      [
+        "tn11"
+      ]
+    ]
+  },
+  {
+    "id": "tn11",
+    "type": "todoist-task-delete",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 480,
+    "wires": [
+      [
+        "lo11"
+      ]
+    ]
+  },
+  {
+    "id": "lo11",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 480,
+    "wires": []
+  },
+  {
+    "id": "cm3",
+    "type": "comment",
+    "z": "tdtest_tab",
+    "name": "--- PROJECTS ---",
+    "info": "",
+    "x": 200,
+    "y": 516,
+    "wires": []
+  },
+  {
+    "id": "inj12",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Get all projects",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Get all projects",
+    "payload": "{}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 556,
+    "wires": [
+      [
+        "tn12"
+      ]
+    ]
+  },
+  {
+    "id": "tn12",
+    "type": "todoist-project-get-all",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 556,
+    "wires": [
+      [
+        "lo12"
+      ]
+    ]
+  },
+  {
+    "id": "lo12",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 556,
+    "wires": []
+  },
+  {
+    "id": "inj13",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Get project",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Get project",
+    "payload": "{\"id\":\"PROJECT_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 592,
+    "wires": [
+      [
+        "tn13"
+      ]
+    ]
+  },
+  {
+    "id": "tn13",
+    "type": "todoist-project-get",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 592,
+    "wires": [
+      [
+        "lo13"
+      ]
+    ]
+  },
+  {
+    "id": "lo13",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 592,
+    "wires": []
+  },
+  {
+    "id": "inj14",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Create project",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Create project",
+    "payload": "{\"name\":\"ClaudeTest\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 628,
+    "wires": [
+      [
+        "tn14"
+      ]
+    ]
+  },
+  {
+    "id": "tn14",
+    "type": "todoist-project-create",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 628,
+    "wires": [
+      [
+        "lo14"
+      ]
+    ]
+  },
+  {
+    "id": "lo14",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 628,
+    "wires": []
+  },
+  {
+    "id": "inj15",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Update project",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Update project",
+    "payload": "{\"id\":\"PROJECT_ID\",\"name\":\"ClaudeTest renamed\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 664,
+    "wires": [
+      [
+        "tn15"
+      ]
+    ]
+  },
+  {
+    "id": "tn15",
+    "type": "todoist-project-update",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 664,
+    "wires": [
+      [
+        "lo15"
+      ]
+    ]
+  },
+  {
+    "id": "lo15",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 664,
+    "wires": []
+  },
+  {
+    "id": "inj16",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Archive project",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Archive project",
+    "payload": "{\"id\":\"PROJECT_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 700,
+    "wires": [
+      [
+        "tn16"
+      ]
+    ]
+  },
+  {
+    "id": "tn16",
+    "type": "todoist-project-archive",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 700,
+    "wires": [
+      [
+        "lo16"
+      ]
+    ]
+  },
+  {
+    "id": "lo16",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 700,
+    "wires": []
+  },
+  {
+    "id": "inj17",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Unarchive project",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Unarchive project",
+    "payload": "{\"id\":\"PROJECT_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 736,
+    "wires": [
+      [
+        "tn17"
+      ]
+    ]
+  },
+  {
+    "id": "tn17",
+    "type": "todoist-project-unarchive",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 736,
+    "wires": [
+      [
+        "lo17"
+      ]
+    ]
+  },
+  {
+    "id": "lo17",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 736,
+    "wires": []
+  },
+  {
+    "id": "inj18",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Delete project",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Delete project",
+    "payload": "{\"id\":\"PROJECT_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 772,
+    "wires": [
+      [
+        "tn18"
+      ]
+    ]
+  },
+  {
+    "id": "tn18",
+    "type": "todoist-project-delete",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 772,
+    "wires": [
+      [
+        "lo18"
+      ]
+    ]
+  },
+  {
+    "id": "lo18",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 772,
+    "wires": []
+  },
+  {
+    "id": "cm4",
+    "type": "comment",
+    "z": "tdtest_tab",
+    "name": "--- SECTIONS ---",
+    "info": "",
+    "x": 200,
+    "y": 808,
+    "wires": []
+  },
+  {
+    "id": "inj19",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "List all sections",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "List all sections",
+    "payload": "{\"project_id\":\"PROJECT_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 848,
+    "wires": [
+      [
+        "tn19"
+      ]
+    ]
+  },
+  {
+    "id": "tn19",
+    "type": "todoist-section-get-all",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 848,
+    "wires": [
+      [
+        "lo19"
+      ]
+    ]
+  },
+  {
+    "id": "lo19",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 848,
+    "wires": []
+  },
+  {
+    "id": "inj20",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Get section",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Get section",
+    "payload": "{\"id\":\"SECTION_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 884,
+    "wires": [
+      [
+        "tn20"
+      ]
+    ]
+  },
+  {
+    "id": "tn20",
+    "type": "todoist-section-get",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 884,
+    "wires": [
+      [
+        "lo20"
+      ]
+    ]
+  },
+  {
+    "id": "lo20",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 884,
+    "wires": []
+  },
+  {
+    "id": "inj21",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Create section",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Create section",
+    "payload": "{\"name\":\"Section\",\"project_id\":\"PROJECT_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 920,
+    "wires": [
+      [
+        "tn21"
+      ]
+    ]
+  },
+  {
+    "id": "tn21",
+    "type": "todoist-section-create",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 920,
+    "wires": [
+      [
+        "lo21"
+      ]
+    ]
+  },
+  {
+    "id": "lo21",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 920,
+    "wires": []
+  },
+  {
+    "id": "inj22",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Update section",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Update section",
+    "payload": "{\"id\":\"SECTION_ID\",\"name\":\"Section renamed\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 956,
+    "wires": [
+      [
+        "tn22"
+      ]
+    ]
+  },
+  {
+    "id": "tn22",
+    "type": "todoist-section-update",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 956,
+    "wires": [
+      [
+        "lo22"
+      ]
+    ]
+  },
+  {
+    "id": "lo22",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 956,
+    "wires": []
+  },
+  {
+    "id": "inj23",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Delete section",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Delete section",
+    "payload": "{\"id\":\"SECTION_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 992,
+    "wires": [
+      [
+        "tn23"
+      ]
+    ]
+  },
+  {
+    "id": "tn23",
+    "type": "todoist-section-delete",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 992,
+    "wires": [
+      [
+        "lo23"
+      ]
+    ]
+  },
+  {
+    "id": "lo23",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 992,
+    "wires": []
+  },
+  {
+    "id": "cm5",
+    "type": "comment",
+    "z": "tdtest_tab",
+    "name": "--- LABELS ---",
+    "info": "",
+    "x": 200,
+    "y": 1028,
+    "wires": []
+  },
+  {
+    "id": "inj24",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "List all labels",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "List all labels",
+    "payload": "{}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 1068,
+    "wires": [
+      [
+        "tn24"
+      ]
+    ]
+  },
+  {
+    "id": "tn24",
+    "type": "todoist-label-get-all",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 1068,
+    "wires": [
+      [
+        "lo24"
+      ]
+    ]
+  },
+  {
+    "id": "lo24",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 1068,
+    "wires": []
+  },
+  {
+    "id": "inj25",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Get label",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Get label",
+    "payload": "{\"id\":\"LABEL_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 1104,
+    "wires": [
+      [
+        "tn25"
+      ]
+    ]
+  },
+  {
+    "id": "tn25",
+    "type": "todoist-label-get",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 1104,
+    "wires": [
+      [
+        "lo25"
+      ]
+    ]
+  },
+  {
+    "id": "lo25",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 1104,
+    "wires": []
+  },
+  {
+    "id": "inj26",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Create label",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Create label",
+    "payload": "{\"name\":\"claudetestlabel\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 1140,
+    "wires": [
+      [
+        "tn26"
+      ]
+    ]
+  },
+  {
+    "id": "tn26",
+    "type": "todoist-label-create",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 1140,
+    "wires": [
+      [
+        "lo26"
+      ]
+    ]
+  },
+  {
+    "id": "lo26",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 1140,
+    "wires": []
+  },
+  {
+    "id": "inj27",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Update label",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Update label",
+    "payload": "{\"id\":\"LABEL_ID\",\"name\":\"claudetestlabel2\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 1176,
+    "wires": [
+      [
+        "tn27"
+      ]
+    ]
+  },
+  {
+    "id": "tn27",
+    "type": "todoist-label-update",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 1176,
+    "wires": [
+      [
+        "lo27"
+      ]
+    ]
+  },
+  {
+    "id": "lo27",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 1176,
+    "wires": []
+  },
+  {
+    "id": "inj28",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Delete label",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Delete label",
+    "payload": "{\"id\":\"LABEL_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 1212,
+    "wires": [
+      [
+        "tn28"
+      ]
+    ]
+  },
+  {
+    "id": "tn28",
+    "type": "todoist-label-delete",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 1212,
+    "wires": [
+      [
+        "lo28"
+      ]
+    ]
+  },
+  {
+    "id": "lo28",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 1212,
+    "wires": []
+  },
+  {
+    "id": "cm6",
+    "type": "comment",
+    "z": "tdtest_tab",
+    "name": "--- COMMENTS ---",
+    "info": "",
+    "x": 200,
+    "y": 1248,
+    "wires": []
+  },
+  {
+    "id": "inj29",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "List comments",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "List comments",
+    "payload": "{\"task_id\":\"TASK_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 1288,
+    "wires": [
+      [
+        "tn29"
+      ]
+    ]
+  },
+  {
+    "id": "tn29",
+    "type": "todoist-comment-get-all",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 1288,
+    "wires": [
+      [
+        "lo29"
+      ]
+    ]
+  },
+  {
+    "id": "lo29",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 1288,
+    "wires": []
+  },
+  {
+    "id": "inj30",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Create comment",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Create comment",
+    "payload": "{\"content\":\"Test comment\",\"task_id\":\"TASK_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 1324,
+    "wires": [
+      [
+        "tn30"
+      ]
+    ]
+  },
+  {
+    "id": "tn30",
+    "type": "todoist-comment-create",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 1324,
+    "wires": [
+      [
+        "lo30"
+      ]
+    ]
+  },
+  {
+    "id": "lo30",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 1324,
+    "wires": []
+  },
+  {
+    "id": "inj31",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Update comment",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Update comment",
+    "payload": "{\"id\":\"COMMENT_ID\",\"content\":\"Changed\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 1360,
+    "wires": [
+      [
+        "tn31"
+      ]
+    ]
+  },
+  {
+    "id": "tn31",
+    "type": "todoist-comment-update",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 1360,
+    "wires": [
+      [
+        "lo31"
+      ]
+    ]
+  },
+  {
+    "id": "lo31",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 1360,
+    "wires": []
+  },
+  {
+    "id": "inj32",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Delete comment",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Delete comment",
+    "payload": "{\"id\":\"COMMENT_ID\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 1396,
+    "wires": [
+      [
+        "tn32"
+      ]
+    ]
+  },
+  {
+    "id": "tn32",
+    "type": "todoist-comment-delete",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 1396,
+    "wires": [
+      [
+        "lo32"
+      ]
+    ]
+  },
+  {
+    "id": "lo32",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 1396,
+    "wires": []
+  },
+  {
+    "id": "cm7",
+    "type": "comment",
+    "z": "tdtest_tab",
+    "name": "--- GENERIC QUERY ---",
+    "info": "",
+    "x": 200,
+    "y": 1432,
+    "wires": []
+  },
+  {
+    "id": "inj33",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "Custom query",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "Custom query",
+    "payload": "{\"endpoint\":\"projects?limit=5\",\"method\":\"GET\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 1472,
+    "wires": [
+      [
+        "tn33"
+      ]
+    ]
+  },
+  {
+    "id": "tn33",
+    "type": "todoist-query-api",
+    "z": "tdtest_tab",
+    "name": "",
+    "token": "tdtest_token",
+    "x": 450,
+    "y": 1472,
+    "wires": [
+      [
+        "lo33"
+      ]
+    ]
+  },
+  {
+    "id": "lo33",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 600,
+    "y": 1472,
+    "wires": []
+  },
+  {
+    "id": "li_res",
+    "type": "link in",
+    "z": "tdtest_tab",
+    "name": "Antworten",
+    "links": [
+      "lo1",
+      "lo2",
+      "lo3",
+      "lo4",
+      "lo5",
+      "lo6",
+      "lo7",
+      "lo8",
+      "lo9",
+      "lo10",
+      "lo11",
+      "lo12",
+      "lo13",
+      "lo14",
+      "lo15",
+      "lo16",
+      "lo17",
+      "lo18",
+      "lo19",
+      "lo20",
+      "lo21",
+      "lo22",
+      "lo23",
+      "lo24",
+      "lo25",
+      "lo26",
+      "lo27",
+      "lo28",
+      "lo29",
+      "lo30",
+      "lo31",
+      "lo32",
+      "lo33",
+      "lo_cl"
+    ],
+    "x": 780,
+    "y": 100,
+    "wires": [
+      [
+        "fn_res"
+      ]
+    ]
+  },
+  {
+    "id": "fn_res",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "Antwort kuerzen",
+    "func": "const r = msg.payload;\nconst ok = !!(r && r.status >= 200 && r.status < 300);\nmsg.payload = ok\n  ? { ok: true, status: r.status, data: r.data }\n  : { ok: false, status: r.response && r.response.status, error: (r.response && r.response.data) || r.message };\nreturn msg;",
+    "outputs": 1,
+    "x": 940,
+    "y": 100,
+    "wires": [
+      [
+        "dbg_res"
+      ]
+    ]
+  },
+  {
+    "id": "dbg_res",
+    "type": "debug",
+    "z": "tdtest_tab",
+    "name": "Todoist Antwort",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": true,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "payload.status",
+    "statusType": "auto",
+    "x": 1120,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "cm8",
+    "type": "comment",
+    "z": "tdtest_tab",
+    "name": "=== AUTO-TEST: legt Projekt ClaudeTest an, testet alle Nodes, loescht alles wieder. Ergebnis: Debug 'Auto-Test Ergebnis' ===",
+    "info": "",
+    "x": 200,
+    "y": 1538,
+    "wires": []
+  },
+  {
+    "id": "at_inj",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "RUN Auto-Test",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 190,
+    "y": 1578,
+    "wires": [
+      [
+        "at_fn0"
+      ]
+    ]
+  },
+  {
+    "id": "at_fn0",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "start",
+    "func": "flow.set('log',[]);\nmsg.payload={name:'ClaudeTest'};\nreturn msg;",
+    "outputs": 1,
+    "x": 340,
+    "y": 1578,
+    "wires": [
+      [
+        "at_n1"
+      ]
+    ]
+  },
+  {
+    "id": "at_n1",
+    "type": "todoist-project-create",
+    "z": "tdtest_tab",
+    "name": "[1] project-create",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 1614,
+    "wires": [
+      [
+        "at_f1"
+      ]
+    ]
+  },
+  {
+    "id": "at_f1",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 1",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'project-create', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'project-create', log }; return [null, msg]; }\nflow.set('pid',d.id);\nmsg.payload = {name:'Sec A', project_id: flow.get('pid')};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 1614,
+    "wires": [
+      [
+        "at_n2"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n2",
+    "type": "todoist-section-create",
+    "z": "tdtest_tab",
+    "name": "[2] section-create A",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 1650,
+    "wires": [
+      [
+        "at_f2"
+      ]
+    ]
+  },
+  {
+    "id": "at_f2",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 2",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'section-create A', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'section-create A', log }; return [null, msg]; }\nflow.set('sid',d.id);\nmsg.payload = {name:'Sec B', project_id: flow.get('pid')};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 1650,
+    "wires": [
+      [
+        "at_n3"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n3",
+    "type": "todoist-section-create",
+    "z": "tdtest_tab",
+    "name": "[3] section-create B",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 1686,
+    "wires": [
+      [
+        "at_f3"
+      ]
+    ]
+  },
+  {
+    "id": "at_f3",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 3",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'section-create B', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'section-create B', log }; return [null, msg]; }\nflow.set('sid2',d.id);\nmsg.payload = {content:'Claude test task', project_id: flow.get('pid'), section_id: flow.get('sid'), priority:2};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 1686,
+    "wires": [
+      [
+        "at_n4"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n4",
+    "type": "todoist-task-create",
+    "z": "tdtest_tab",
+    "name": "[4] task-create",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 1722,
+    "wires": [
+      [
+        "at_f4"
+      ]
+    ]
+  },
+  {
+    "id": "at_f4",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 4",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'task-create', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'task-create', log }; return [null, msg]; }\nflow.set('tid',d.id);\nmsg.payload = {id: flow.get('tid')};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 1722,
+    "wires": [
+      [
+        "at_n5"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n5",
+    "type": "todoist-task-get",
+    "z": "tdtest_tab",
+    "name": "[5] task-get",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 1758,
+    "wires": [
+      [
+        "at_f5"
+      ]
+    ]
+  },
+  {
+    "id": "at_f5",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 5",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'task-get', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'task-get', log }; return [null, msg]; }\nmsg.payload = {id: flow.get('tid'), content:'Claude test task (updated)', priority:3};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 1758,
+    "wires": [
+      [
+        "at_n6"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n6",
+    "type": "todoist-task-update",
+    "z": "tdtest_tab",
+    "name": "[6] task-update",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 1794,
+    "wires": [
+      [
+        "at_f6"
+      ]
+    ]
+  },
+  {
+    "id": "at_f6",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 6",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'task-update', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'task-update', log }; return [null, msg]; }\nmsg.payload = {id: flow.get('tid'), section_id: flow.get('sid2')};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 1794,
+    "wires": [
+      [
+        "at_n7"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n7",
+    "type": "todoist-task-move",
+    "z": "tdtest_tab",
+    "name": "[7] task-move",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 1830,
+    "wires": [
+      [
+        "at_f7"
+      ]
+    ]
+  },
+  {
+    "id": "at_f7",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 7",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'task-move', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'task-move', log }; return [null, msg]; }\nmsg.payload = {query:'#ClaudeTest'};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 1830,
+    "wires": [
+      [
+        "at_n8"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n8",
+    "type": "todoist-task-filter",
+    "z": "tdtest_tab",
+    "name": "[8] task-filter",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 1866,
+    "wires": [
+      [
+        "at_f8"
+      ]
+    ]
+  },
+  {
+    "id": "at_f8",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 8",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nif (ok && !(Array.isArray(d) && d.length >= 1)) { ok = false; err = 'expected >= 1 items'; }\nconst log = flow.get('log') || [];\nlog.push({ step: 'task-filter', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'task-filter', log }; return [null, msg]; }\nmsg.payload = {project_id: flow.get('pid')};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 1866,
+    "wires": [
+      [
+        "at_n9"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n9",
+    "type": "todoist-task-get-all",
+    "z": "tdtest_tab",
+    "name": "[9] task-get-all",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 1902,
+    "wires": [
+      [
+        "at_f9"
+      ]
+    ]
+  },
+  {
+    "id": "at_f9",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 9",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nif (ok && !(Array.isArray(d) && d.length >= 1)) { ok = false; err = 'expected >= 1 items'; }\nconst log = flow.get('log') || [];\nlog.push({ step: 'task-get-all', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'task-get-all', log }; return [null, msg]; }\nmsg.payload = {project_id: flow.get('pid')};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 1902,
+    "wires": [
+      [
+        "at_n10"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n10",
+    "type": "todoist-section-get-all",
+    "z": "tdtest_tab",
+    "name": "[10] section-get-all",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 1938,
+    "wires": [
+      [
+        "at_f10"
+      ]
+    ]
+  },
+  {
+    "id": "at_f10",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 10",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nif (ok && !(Array.isArray(d) && d.length >= 2)) { ok = false; err = 'expected >= 2 items'; }\nconst log = flow.get('log') || [];\nlog.push({ step: 'section-get-all', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'section-get-all', log }; return [null, msg]; }\nmsg.payload = {name:'claudetestlabel'};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 1938,
+    "wires": [
+      [
+        "at_n11"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n11",
+    "type": "todoist-label-create",
+    "z": "tdtest_tab",
+    "name": "[11] label-create",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 1974,
+    "wires": [
+      [
+        "at_f11"
+      ]
+    ]
+  },
+  {
+    "id": "at_f11",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 11",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'label-create', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'label-create', log }; return [null, msg]; }\nflow.set('lid',d.id);\nmsg.payload = {};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 1974,
+    "wires": [
+      [
+        "at_n12"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n12",
+    "type": "todoist-label-get-all",
+    "z": "tdtest_tab",
+    "name": "[12] label-get-all",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 2010,
+    "wires": [
+      [
+        "at_f12"
+      ]
+    ]
+  },
+  {
+    "id": "at_f12",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 12",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nif (ok && !(Array.isArray(d) && d.length >= 1)) { ok = false; err = 'expected >= 1 items'; }\nconst log = flow.get('log') || [];\nlog.push({ step: 'label-get-all', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'label-get-all', log }; return [null, msg]; }\nmsg.payload = {content:'Claude test comment', task_id: flow.get('tid')};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 2010,
+    "wires": [
+      [
+        "at_n13"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n13",
+    "type": "todoist-comment-create",
+    "z": "tdtest_tab",
+    "name": "[13] comment-create",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 2046,
+    "wires": [
+      [
+        "at_f13"
+      ]
+    ]
+  },
+  {
+    "id": "at_f13",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 13",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'comment-create', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'comment-create', log }; return [null, msg]; }\nflow.set('cid',d.id);\nmsg.payload = {task_id: flow.get('tid')};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 2046,
+    "wires": [
+      [
+        "at_n14"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n14",
+    "type": "todoist-comment-get-all",
+    "z": "tdtest_tab",
+    "name": "[14] comment-get-all",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 2082,
+    "wires": [
+      [
+        "at_f14"
+      ]
+    ]
+  },
+  {
+    "id": "at_f14",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 14",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nif (ok && !(Array.isArray(d) && d.length >= 1)) { ok = false; err = 'expected >= 1 items'; }\nconst log = flow.get('log') || [];\nlog.push({ step: 'comment-get-all', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'comment-get-all', log }; return [null, msg]; }\nmsg.payload = {id: flow.get('tid')};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 2082,
+    "wires": [
+      [
+        "at_n15"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n15",
+    "type": "todoist-task-complete",
+    "z": "tdtest_tab",
+    "name": "[15] task-complete",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 2118,
+    "wires": [
+      [
+        "at_f15"
+      ]
+    ]
+  },
+  {
+    "id": "at_f15",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 15",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'task-complete', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'task-complete', log }; return [null, msg]; }\nmsg.payload = {id: flow.get('tid')};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 2118,
+    "wires": [
+      [
+        "at_n16"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n16",
+    "type": "todoist-task-reopen",
+    "z": "tdtest_tab",
+    "name": "[16] task-reopen",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 2154,
+    "wires": [
+      [
+        "at_f16"
+      ]
+    ]
+  },
+  {
+    "id": "at_f16",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 16",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'task-reopen', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'task-reopen', log }; return [null, msg]; }\nmsg.payload = {};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 2154,
+    "wires": [
+      [
+        "at_n17"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n17",
+    "type": "todoist-project-get-all",
+    "z": "tdtest_tab",
+    "name": "[17] project-get-all",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 2190,
+    "wires": [
+      [
+        "at_f17"
+      ]
+    ]
+  },
+  {
+    "id": "at_f17",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 17",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nif (ok && !(Array.isArray(d) && d.length >= 1)) { ok = false; err = 'expected >= 1 items'; }\nconst log = flow.get('log') || [];\nlog.push({ step: 'project-get-all', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'project-get-all', log }; return [null, msg]; }\nmsg.payload = {text:'Claude quick add tomorrow #ClaudeTest'};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 2190,
+    "wires": [
+      [
+        "at_n18"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n18",
+    "type": "todoist-task-quick-add",
+    "z": "tdtest_tab",
+    "name": "[18] task-quick-add",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 2226,
+    "wires": [
+      [
+        "at_f18"
+      ]
+    ]
+  },
+  {
+    "id": "at_f18",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 18",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'task-quick-add', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'task-quick-add', log }; return [null, msg]; }\nmsg.payload = {id: flow.get('lid')};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 2226,
+    "wires": [
+      [
+        "at_n19"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n19",
+    "type": "todoist-label-delete",
+    "z": "tdtest_tab",
+    "name": "[19] label-delete",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 2262,
+    "wires": [
+      [
+        "at_f19"
+      ]
+    ]
+  },
+  {
+    "id": "at_f19",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 19",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'label-delete', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'label-delete', log }; return [null, msg]; }\nmsg.payload = {id: flow.get('pid')};\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 720,
+    "y": 2262,
+    "wires": [
+      [
+        "at_n20"
+      ],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_n20",
+    "type": "todoist-project-delete",
+    "z": "tdtest_tab",
+    "name": "[20] project-delete",
+    "token": "tdtest_token",
+    "x": 520,
+    "y": 2298,
+    "wires": [
+      [
+        "at_f20"
+      ]
+    ]
+  },
+  {
+    "id": "at_f20",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "check 20",
+    "func": "const res = msg.payload;\nlet ok = !!(res && res.status >= 200 && res.status < 300);\nlet err;\nconst d = res && res.data;\nconst log = flow.get('log') || [];\nlog.push({ step: 'project-delete', ok, status: res && (res.status || (res.response && res.response.status)), items: Array.isArray(d) ? d.length : undefined, err: ok ? undefined : (err || (res && res.response && res.response.data) || (res && res.message)) });\nflow.set('log', log);\nif (!ok) { msg.payload = { FAILED: 'project-delete', log }; return [null, msg]; }\nmsg.payload = { ALL_OK: true, log };\nreturn [null, msg];",
+    "outputs": 2,
+    "x": 720,
+    "y": 2298,
+    "wires": [
+      [],
+      [
+        "at_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "at_dbg",
+    "type": "debug",
+    "z": "tdtest_tab",
+    "name": "Auto-Test Ergebnis",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": true,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "payload.ALL_OK",
+    "statusType": "auto",
+    "x": 930,
+    "y": 1614,
+    "wires": []
+  },
+  {
+    "id": "cl_inj",
+    "type": "inject",
+    "z": "tdtest_tab",
+    "name": "CLEANUP: Projekt loeschen (nach Fehler)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 230,
+    "y": 2374,
+    "wires": [
+      [
+        "cl_fn"
+      ]
+    ]
+  },
+  {
+    "id": "cl_fn",
+    "type": "function",
+    "z": "tdtest_tab",
+    "name": "pid",
+    "func": "msg.payload = { id: flow.get('pid') };\nreturn msg;",
+    "outputs": 1,
+    "x": 440,
+    "y": 2374,
+    "wires": [
+      [
+        "cl_del"
+      ]
+    ]
+  },
+  {
+    "id": "cl_del",
+    "type": "todoist-project-delete",
+    "z": "tdtest_tab",
+    "name": "cleanup project",
+    "token": "tdtest_token",
+    "x": 600,
+    "y": 2374,
+    "wires": [
+      [
+        "lo_cl"
+      ]
+    ]
+  },
+  {
+    "id": "lo_cl",
+    "type": "link out",
+    "z": "tdtest_tab",
+    "name": "",
+    "mode": "link",
+    "links": [
+      "li_res"
+    ],
+    "x": 760,
+    "y": 2374,
+    "wires": []
+  }
+]

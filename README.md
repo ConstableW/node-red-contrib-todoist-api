@@ -107,6 +107,10 @@ Here is a visual representation of the nodes available:
 
 ![all available nodes](https://raw.githubusercontent.com/ConstableW/node-red-contrib-todoist-api/master/all-nodes.png)
 
+## Test flow
+
+[`examples/todoist-test-flow.json`](examples/todoist-test-flow.json) is an importable flow (Node-RED menu → Import) with one inject per node and a shared debug output for manual testing. It also contains an **auto test** that creates a throw-away project `ClaudeTest`, runs all nodes against it and deletes it again. After importing, enter your Todoist API token in the "Todoist Token" config node and replace the placeholder IDs (`PROJECT_ID`, `TASK_ID`, ...) in the inject payloads for the manual tests.
+
 ## License
 
 GNU General Public License v3.0 – see [LICENSE](LICENSE).
