@@ -31,56 +31,112 @@ Each node reads its input from `msg.payload` (an object, e.g. `{ "id": "123" }` 
 
 ### Example flow
 
+Import this into Node-RED (menu → Import). It has two injects: one creates a task in your Inbox, the other lists everything due today or overdue. Open the `Todoist` config node and paste your API token. IDs in Todoist API v1 are strings, e.g. `"project_id": "6Jf8VQXxpwv56VQ7"` (omit it to use the Inbox).
+
 ```json
 [
   {
-    "id": "cd167cf2edaf6512",
+    "id": "ex_inject_create",
     "type": "inject",
-    "z": "a42573365dced8a7",
-    "name": "'Create' Task Data",
-    "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+    "z": "ex_tab",
+    "name": "Create task",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
     "repeat": "",
     "crontab": "",
     "once": false,
     "onceDelay": 0.1,
     "topic": "",
-    "payload": "{\"content\":\"Test Task\",\"project_id\":2184202398,\"priority\":1}",
+    "payload": "{\"content\":\"Buy milk\",\"priority\":4,\"due_string\":\"tomorrow\"}",
     "payloadType": "json",
-    "x": 410,
-    "y": 440,
-    "wires": [["57872b84db271bd5"]]
+    "x": 150,
+    "y": 80,
+    "wires": [
+      [
+        "ex_create"
+      ]
+    ]
   },
   {
-    "id": "57872b84db271bd5",
+    "id": "ex_create",
     "type": "todoist-task-create",
-    "z": "a42573365dced8a7",
+    "z": "ex_tab",
     "name": "",
-    "token": "59a4505979e26f0f",
-    "x": 610,
-    "y": 440,
-    "wires": [["a33919ea4e211f6f"]]
+    "token": "ex_token",
+    "x": 370,
+    "y": 80,
+    "wires": [
+      [
+        "ex_debug"
+      ]
+    ]
   },
   {
-    "id": "a33919ea4e211f6f",
-    "type": "debug",
-    "z": "a42573365dced8a7",
+    "id": "ex_inject_filter",
+    "type": "inject",
+    "z": "ex_tab",
+    "name": "Due today",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"query\":\"today | overdue\"}",
+    "payloadType": "json",
+    "x": 150,
+    "y": 140,
+    "wires": [
+      [
+        "ex_filter"
+      ]
+    ]
+  },
+  {
+    "id": "ex_filter",
+    "type": "todoist-task-filter",
+    "z": "ex_tab",
     "name": "",
+    "token": "ex_token",
+    "x": 370,
+    "y": 140,
+    "wires": [
+      [
+        "ex_debug"
+      ]
+    ]
+  },
+  {
+    "id": "ex_debug",
+    "type": "debug",
+    "z": "ex_tab",
+    "name": "Todoist response",
     "active": true,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 970,
-    "y": 680,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 600,
+    "y": 110,
     "wires": []
   },
-  { "id": "59a4505979e26f0f", "type": "add-todoist-api-token", "name": "Todoist" }
+  {
+    "id": "ex_token",
+    "type": "add-todoist-api-token",
+    "name": "Todoist"
+  }
 ]
 ```
 
-The payload data in the inject node is the same data as the Todoist API create task item, see the [Todoist API v1 documentation](https://developer.todoist.com/api/v1/).
+The payload is the same data as in the [Todoist API v1 documentation](https://developer.todoist.com/api/v1/). Every node and its fields are in [docs/nodes.md](docs/nodes.md).
 
 ## Nodes available
 
@@ -101,10 +157,6 @@ Good to know (details in [docs/nodes.md](docs/nodes.md#common-behaviour)):
 - List nodes load **all pages** from the API and return one flat array.
 - On API errors `msg.payload` is the error object (`msg.payload.response.status`, `msg.payload.response.data`).
 - Nodes added in 2.1.0 check the token and required payload fields before sending a request.
-
-Here is a visual representation of the nodes available:
-
-![all available nodes](https://raw.githubusercontent.com/ConstableW/node-red-contrib-todoist-api/master/all-nodes.png)
 
 ## Test flow
 
